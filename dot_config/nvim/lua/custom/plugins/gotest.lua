@@ -1,4 +1,5 @@
 local gotest = function (opt)
+  -- running target test function name
   local target = opt.args
 
   local parent_dir = vim.fn.expand('%:p:h')
