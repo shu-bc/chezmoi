@@ -18,11 +18,11 @@ local sources = {
   b.formatting.shfmt,
   -- b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
-  b.diagnostics.golangci_lint.with({
-    args = {"run", "--out-format=json", "--path-prefix", vim.fn.getcwd(), "--concurrency", "16"},
-    method = null_ls.methods.diagnostics_on_save,
-    timeout = 20000,
-  }),
+  -- b.diagnostics.golangci_lint.with({
+  --   args = {"run", "--out-format=json", "--path-prefix", vim.fn.getcwd(), "--concurrency", "16"},
+  --   method = null_ls.methods.diagnostics_on_save,
+  --   timeout = 20000,
+  -- }),
   b.formatting.gofmt,
 }
 
