@@ -5,7 +5,7 @@ if not present then
 end
 
 local options = {
-  auto_previe = false,
+  auto_preview = false,
 }
 
 

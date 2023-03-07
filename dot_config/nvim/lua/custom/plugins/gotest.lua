@@ -4,7 +4,7 @@ local gotest = function (opt)
 
   local parent_dir = vim.fn.expand('%:p:h')
   local path = vim.fn.substitute(parent_dir, vim.fn.getcwd(), '.', '')
-  local cmd = {"godotenv", "go", "test", path .. '/...', "-v"}
+  local cmd = {"godotenv", "go", "test", path .. '/...' }
 
   if target ~= "" then
     table.insert(cmd, "-run")
