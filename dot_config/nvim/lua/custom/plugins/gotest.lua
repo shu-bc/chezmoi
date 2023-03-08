@@ -1,3 +1,6 @@
+local win
+local buf
+
 local gotest = function (opt)
   -- running target test function name
   local target = opt.args
@@ -11,10 +14,32 @@ local gotest = function (opt)
     table.insert(cmd, target)
   end
 
-  vim.cmd('vsplit')
-  local win = vim.api.nvim_get_current_win()
-  local buf = vim.api.nvim_create_buf(true, true)
-  vim.api.nvim_win_set_buf(win, buf)
+
+  if not buf then
+    buf = vim.api.nvim_create_buf(true, true)
+  else
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
+  end
+
+  if not win then
+      -- vim.cmd('vsplit')
+      -- local win = vim.api.nvim_get_current_win()
+      -- vim.api.nvim_win_set_buf(win, buf)
+    local current_win = vim.api.nvim_get_current_win()
+    local height = vim.api.nvim_win_get_height(current_win)
+    local width = vim.api.nvim_win_get_width(current_win)
+    win = vim.api.nvim_open_win(buf, true, {
+      relative='win',
+      width=math.floor(width*0.45),
+      height=math.floor(height*0.9),
+      anchor='NW',
+      col=math.floor(width*0.5),
+      row=2,
+      border='single'
+    })
+    vim.api.nvim_win_set_buf(win, buf)
+  end
+
 
   local state = {
     bufnr = buf,
