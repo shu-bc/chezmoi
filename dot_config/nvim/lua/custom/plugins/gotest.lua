@@ -15,13 +15,13 @@ local gotest = function (opt)
   end
 
 
-  if not buf then
+  if not buf or not vim.api.nvim_buf_is_valid(buf) then
     buf = vim.api.nvim_create_buf(true, true)
   else
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
   end
 
-  if not win then
+  if not win or not vim.api.nvim_win_is_valid(win) then
       -- vim.cmd('vsplit')
       -- local win = vim.api.nvim_get_current_win()
       -- vim.api.nvim_win_set_buf(win, buf)
@@ -93,8 +93,10 @@ local gotest = function (opt)
 
       vim.api.nvim_buf_set_lines(buf, -1, -1, false, {"test completed"})
 
-      local total_lines = vim.api.nvim_buf_line_count(0)
-      vim.api.nvim_win_set_cursor(win, {total_lines, 0})
+      local total_lines = vim.api.nvim_buf_line_count(buf)
+      if total_lines then
+        vim.api.nvim_win_set_cursor(win, {total_lines, 0})
+      end
     end,
   })
 end
