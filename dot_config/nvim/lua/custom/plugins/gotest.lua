@@ -66,6 +66,8 @@ local gotest = function (opt)
         end
       end
 
+      vim.api.nvim_buf_set_lines(buf, -1, -1, false, {"test completed"})
+
       local total_lines = vim.api.nvim_buf_line_count(0)
       vim.api.nvim_win_set_cursor(win, {total_lines, 0})
     end,
