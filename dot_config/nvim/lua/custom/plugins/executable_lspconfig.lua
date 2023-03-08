@@ -3,7 +3,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls", "tsserver", "clangd", "gopls"}
+local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "solargraph"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -11,5 +11,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig.solargraph.setup{}
