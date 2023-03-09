@@ -28,8 +28,15 @@ local plugins = {
 	["tpope/vim-surround"] = {},
 
   ["tpope/vim-fugitive"] = {},
-}
 
-require('custom.plugins.gotest')
+  ["ray-x/go.nvim"] = {
+    requires = "ray-x/guihua.lua",
+    config = function()
+      require("go").setup({
+        filename = ".env"
+      })
+    end,
+  },
+}
 
 return plugins

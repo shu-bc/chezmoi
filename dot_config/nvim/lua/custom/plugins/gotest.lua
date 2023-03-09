@@ -99,4 +99,4 @@ local gotest = function (opt)
   })
 end
 
-vim.api.nvim_create_user_command("GoTest", gotest, {nargs = '?'})
+vim.api.nvim_create_user_command("GoTestCustom", gotest, {nargs = '?'})
