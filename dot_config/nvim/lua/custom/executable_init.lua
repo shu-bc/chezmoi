@@ -29,3 +29,27 @@ autocmd('BufWritePre', {
   end,
 })
 
+
+-- auto go test
+local augrp_go_test = vim.api.nvim_create_augroup("autocmdGoTest", {})
+
+local auto_test = function()
+  local buf = vim.api.nvim_get_current_buf()
+  autocmd('BufWritePost', {
+    group = augrp_go_test,
+    pattern = '*.go',
+    callback = function ()
+      vim.api.nvim_buf_call(buf, function ()
+        vim.cmd('GoTestFile')
+      end)
+    end
+  })
+end
+
+vim.api.nvim_create_user_command("AutoGoTest", auto_test, {})
+vim.api.nvim_create_user_command("AutoGoTestClear", function ()
+  vim.api.nvim_clear_autocmds({
+    group = augrp_go_test
+  })
+end, {})
+
