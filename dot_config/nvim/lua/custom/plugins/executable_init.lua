@@ -37,6 +37,13 @@ local plugins = {
       })
     end,
   },
+
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    requires = "nvim-treesitter/nvim-treesitter",
+    after = "nvim-treesitter",
+    config = function ()
+    end
+  }
 }
 
 return plugins
