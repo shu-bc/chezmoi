@@ -20,12 +20,7 @@ autocmd('BufWritePre', {
   group = augrpGo,
   pattern = '*.go',
   callback = function()
-    -- gofmt
-    vim.lsp.buf.format({ async = false})
-    vim.lsp.buf.code_action({
-      context = { only = { 'source.organizeImports' } },
-      apply = true,
-    })
+    require('go.format').goimport()
   end,
 })
 
